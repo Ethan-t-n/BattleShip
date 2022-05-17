@@ -23,6 +23,14 @@ class Cell
   end
 
 
+  def fired_upon?
+    if @health == @length
+      false
+    else
+      true
+    end
+  end
+
 
 
 
