@@ -3,13 +3,13 @@ require './lib/ship'
 
 
 RSpec.describe Ship do
+    before :each do
+      @cruiser = Ship.new("Cruiser", 3)
+    end
+
   it 'exists' do
-    cruiser = Ship.new("Cruiser", 3)
-    sub = Ship.new("Sub", 2)
-    expect(ship).to be_instance_of(Ship)
+    expect(@cruiser).to be_instance_of(Ship)
   end
-
-
 
   it 'has a name' do
     cruiser = Ship.new("Cruiser")
@@ -20,27 +20,27 @@ RSpec.describe Ship do
 
 
 
-  it 'has a length' do
-    cruiser = Ship.new(3)
-    sub = Ship.new(2)
-    expect(Ship.length).to eq(3)
-  end
+  # it 'has a length' do
+  #   cruiser = Ship.new(3)
+  #   sub = Ship.new(2)
+  #   expect(Ship.length).to eq(3)
+  # end
 
 
 
-  it 'has health' do
-    cruiser = Ship.new(3)
-    sub = Ship.new(2)
-    expect(Ship.health).to eq(3)
-  end
+  # it 'has health' do
+  #   cruiser = Ship.new(3)
+  #   sub = Ship.new(2)
+  #   expect(Ship.health).to eq(3)
+  # end
 
 
 
-  it 'sunk?' do
-    cruiser = Ship.new(3)
+  # it 'sunk?' do
+  #   cruiser = Ship.new(3)
 
-    expect(Ship.sunk?).to be false
-  end
+  #   expect(Ship.sunk?).to be false
+  # end
 
 
 
