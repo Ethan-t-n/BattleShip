@@ -1,11 +1,11 @@
-require 'rspec'
+require 'pry'
 require './lib/ship'
 
 
 RSpec.describe Ship do
-    before :each do
-      @cruiser = Ship.new("Cruiser", 3)
-    end
+  before :each do
+    @cruiser = Ship.new("Cruiser", 3)
+  end
 
   it 'exists' do
     expect(@cruiser).to be_instance_of(Ship)
