@@ -6,6 +6,7 @@ require 'pry'
 RSpec.describe Cell do
   before :each do
     @cell = Cell.new("B4")
+    @cruiser = Ship.new("Cruiser", 3)
   end
 
   it 'exists' do
@@ -18,8 +19,15 @@ RSpec.describe Cell do
     expect(@cell.ship).to eq(nil)
   end
 
+
   it 'will be empty' do
     expect(@cell.empty?).to eq true
+  end
+
+
+  it 'puts cruiser on a cell' do
+    @cell.place_ship(@cruiser)
+    expect(@cell.ship).to eq @cruiser
   end
 
 
