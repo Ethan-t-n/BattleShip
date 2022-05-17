@@ -28,9 +28,13 @@ RSpec.describe Cell do
   it 'puts cruiser on a cell' do
     @cell.place_ship(@cruiser)
     expect(@cell.ship).to eq @cruiser
+    expect(@cell.empty?).to eq false
   end
 
-
+  it 'has been fired on boolean' do
+    @cell.place_ship(@cruiser)
+    expect(@cell.fired_upon?).to eq false
+  end
 
 
 
