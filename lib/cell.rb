@@ -24,11 +24,16 @@ class Cell
 
 
   def fired_upon?
-    if @health == @length
+    if ship.health == ship.length
       false
     else
       true
     end
+  end
+
+
+  def fire_upon
+    ship.hit
   end
 
 
