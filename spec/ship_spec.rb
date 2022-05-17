@@ -18,13 +18,9 @@ RSpec.describe Ship do
     expect(@cruiser.health).to eq(3)
   end
 
-
-
-  # it 'sunk?' do
-  #   cruiser = Ship.new(3)
-
-  #   expect(Ship.sunk?).to be false
-  # end
+  it 'isnt sunk initially' do
+    expect(@cruiser.sunk?).to be false
+  end
 
 
 end
