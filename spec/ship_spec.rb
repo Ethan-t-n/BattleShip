@@ -22,5 +22,10 @@ RSpec.describe Ship do
     expect(@cruiser.sunk?).to be false
   end
 
+  it 'affects health when hit' do 
+    @cruiser.hit
+  
+    expect(@cruiser.health).to eq 2
+  end
 
 end
