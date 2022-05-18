@@ -9,7 +9,7 @@ class Cell
 
 
   def empty?
-    if @ship  == nil
+    if @ship == nil
       true
     else
       false
@@ -24,6 +24,7 @@ class Cell
 
 
   def fired_upon?
+    binding.pry
     if ship.health == ship.length
       false
     else
@@ -36,16 +37,39 @@ class Cell
     ship.hit
   end
 
-
-
-
-
-
-
-
-
-
-
-
+  def render(revealed = false)
+    if revealed == false
+        if fired_upon? == true && ship.sunk? == false && empty? == false
+          p "H"
+        elsif fired_upon? == true && empty? == false && ship.sunk? == true
+          p "X"
+        elsif fired_upon? == true && empty? == true
+          p "M"
+        else
+          p "."
+        end
+    else # revealed == true
+      p "S"
+    end
+  end
 
 end
+
+
+# def render(revealed = false)
+#   if fired_upon? == true
+#     if empty? == true
+#       return "M"
+#     elsif ship.sunk? == true
+#       return "X"
+#     else
+#       return "H"
+#     end
+#   else
+#     if revealed == true && empty? == false
+#       return "S"
+#     else
+#       return "."
+#     end
+#   end
+# end
