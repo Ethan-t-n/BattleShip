@@ -9,6 +9,7 @@ RSpec.describe Ship do
 
   it 'exists' do
     expect(@cruiser).to be_instance_of(Ship)
+  end
 
   it 'has attributes' do
     expect(@cruiser.name).to eq("Cruiser")
@@ -20,9 +21,9 @@ RSpec.describe Ship do
     expect(@cruiser.sunk?).to be false
   end
 
-  it 'affects health when hit' do 
+  it 'affects health when hit' do
     @cruiser.hit
-  
+
     expect(@cruiser.health).to eq 2
   end
 
@@ -31,7 +32,7 @@ RSpec.describe Ship do
     @cruiser.hit
 
     expect(@cruiser.health).to eq 1
-    
+
     @cruiser.hit
 
     expect(@cruiser.sunk?).to eq true
