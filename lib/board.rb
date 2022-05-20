@@ -13,11 +13,19 @@ class Board
 
 
   def valid_placement?(ship, coordinate)
-    if coordinate.count == ship.length
-      true
-    else
-      false
+    rows = []
+    columns = []
+
+    @cells.each do |row|
+      binding.pry
+      rows << row.sort_by(&:last)
     end
+    binding.pry
+    # if coordinate.count == ship.length
+    #   true
+    # else
+    #   false
+    # end
   end
 
 
