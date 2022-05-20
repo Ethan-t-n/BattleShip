@@ -57,25 +57,6 @@ class Cell
 
 end
 
-#Attempt 1
-# def render(revealed = false)
-#   if fired_upon? == true
-#     if empty? == true
-#       return "M"
-#     elsif ship.sunk? == true
-#       return "X"
-#     else
-#       return "H"
-#     end
-#   else
-#     if revealed == true && empty? == false
-#       return "S"
-#     else
-#       return "."
-#     end
-#   end
-# end
-
 #Attempt 2
 # def render(revealed = false)
 #   if revealed == false

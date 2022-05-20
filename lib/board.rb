@@ -9,17 +9,52 @@ class Board
     }
   end
 
-  def valid_coordinate?(coordinate); @cells.has_key?(coordinate) end
+  def valid_coordinate?(coordinate)
+    @cells.has_key?(coordinate) 
+  end
 
-
-  def valid_placement?(ship, coordinate)
-    if coordinate.count == ship.length
+  def valid_placement?(ship, coordinates)
+# code below evaluates if the coordinate length is == the ship length
+    if coordinates.count == ship.length
       true
     else
       false
     end
+
+# code below evaluates if a ship is present in the cell
+    coordinates.each do |coordinate|
+      if !@cells[coordinate].empty? == false
+        return false
+      else
+        true
+      end
+    end
+
+# code below evaluates if the coordinates are consecutive
+#if the difference between the range of numbers is > 1 its invalid
+    rows_numbers = []
+    collumns_letters = []
+    coordinates.each do |coordinate|
+      parts = coordinate.split("")
+      collumns_letters << coordinate[0].ord
+      rows_numbers << coordinate[1].to_i
+    end
+binding.pry
+
   end
 
+
+  # def check_for_win
+  #   if game_board[6..0][0..6] == x #checking from the last row to the last column = x
+  #     x += 1 #adding to the value of x
+  #   else game_board[6..0][0..6] != x #checkig from the last row to the last column not = x
+  #     x -= 1 #subracting from the value of x
+  #   end
+
+  #   if x <= 0 # stopping the x-value from = 0 to prevent negative values
+  #     x = 0 # when the x-value dips below zero we reset to zero
+  #   end
+  # end
 
 
 
