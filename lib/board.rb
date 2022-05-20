@@ -12,7 +12,13 @@ class Board
   def valid_coordinate?(coordinate); @cells.has_key?(coordinate) end
 
 
-  def valid_placement?(coordindate)
+  def valid_placement?(ship, coordinate)
+    if coordinate.count == ship.length
+      true
+    else
+      false
+    end
+  end
 
 
 
