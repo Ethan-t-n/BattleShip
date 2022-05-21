@@ -13,6 +13,7 @@ class Board
     @cells.has_key?(coordinate) 
   end
 
+
   def valid_placement?(ship, coordinates)
 # code below evaluates if the coordinate length is == the ship length
     if coordinates.count == ship.length
@@ -40,6 +41,22 @@ class Board
       rows_numbers << coordinate[1].to_i
     end
 binding.pry
+
+
+  def valid_placement?(ship, coordinate)
+    rows = []
+    columns = []
+
+    @cells.each do |row|
+      binding.pry
+      rows << row.sort_by(&:last)
+    end
+    binding.pry
+    # if coordinate.count == ship.length
+    #   true
+    # else
+    #   false
+    # end
 
   end
 
