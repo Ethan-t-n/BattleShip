@@ -64,10 +64,7 @@ class Board
     end
   end
 
-    #code below evaluates if the coordinates are consecutive
-    #if the difference between the range of numbers is > 1 its invalid
-
-  def consecutive_coordinates?(ship, coordinates)
+  def consecutive_coordinates?(ship, coordinates) #check for valid row coordinates, rename this method appropriately
     rows_numbers = []
     collumns_letters = []
     coordinates.each do |coordinate|
