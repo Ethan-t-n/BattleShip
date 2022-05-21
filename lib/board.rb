@@ -1,3 +1,5 @@
+require 'pry'
+
 class Board
   attr_reader :cells
   def initialize
@@ -15,24 +17,55 @@ class Board
 
 
   def valid_placement?(ship, coordinates)
-# code below evaluates if the coordinate length is == the ship length
+    if valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
+      false
+    else #valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
+      #  binding.pry
+      true
+    end
+
+  end
+
+  def valid_length?(ship, coordinates)
     if coordinates.count == ship.length
       true
     else
       false
     end
+  end
 
-# code below evaluates if a ship is present in the cell
+  def ship_present?(ship, coordinates)
+    present = []
     coordinates.each do |coordinate|
-      if !@cells[coordinate].empty? == false
-        return false
+      if @cells[coordinate].empty? == true
+        present << false
+        next
       else
-        true
+        present << true
       end
     end
+    if present.include?('true')
+      true
+    else
+      false
+    end
+  end
 
-# code below evaluates if the coordinates are consecutive
-#if the difference between the range of numbers is > 1 its invalid
+  def consecutive_coordinates?(ship, coordinates) #check for valid row coordinates, rename this method appropriately
     rows_numbers = []
     collumns_letters = []
     coordinates.each do |coordinate|
@@ -40,53 +73,17 @@ class Board
       collumns_letters << coordinate[0].ord
       rows_numbers << coordinate[1].to_i
     end
-binding.pry
 
-
-  def valid_placement?(ship, coordinate)
-    rows = []
-    columns = []
-
-    @cells.each do |row|
-      binding.pry
-      rows << row.sort_by(&:last)
+  #  rows_numbers.each_cons(coordinates.length) do |num|
+    range = (rows_numbers.min)..(rows_numbers.max)
+    consecutive_array = range.to_a
+    if rows_numbers != consecutive_array
+      false
+    else
+      true
     end
-    binding.pry
-    # if coordinate.count == ship.length
-    #   true
-    # else
-    #   false
-    # end
 
   end
-
-
-  # def check_for_win
-  #   if game_board[6..0][0..6] == x #checking from the last row to the last column = x
-  #     x += 1 #adding to the value of x
-  #   else game_board[6..0][0..6] != x #checkig from the last row to the last column not = x
-  #     x -= 1 #subracting from the value of x
-  #   end
-
-  #   if x <= 0 # stopping the x-value from = 0 to prevent negative values
-  #     x = 0 # when the x-value dips below zero we reset to zero
-  #   end
-  # end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
