@@ -15,6 +15,7 @@ class Board
     @cells.has_key?(coordinate) 
   end
 
+
   def valid_placement?(ship, coordinates)
     if valid_length?(ship, coordinates) == true
       true
@@ -78,6 +79,7 @@ class Board
       collumns_letters << coordinate[0].ord
       rows_numbers << coordinate[1].to_i
     end
+
   #  rows_numbers.each_cons(coordinates.length) do |num|
     row_range = (rows_numbers.min)..(rows_numbers.max)
     consecutive_array = row_range.to_a
@@ -86,6 +88,7 @@ class Board
     else
       true
     end
+
     
     collumn_range = (collumns_letters.min)..(collumns_letters.max)
     consecutive_collumn_array = collumn_range.to_a
