@@ -17,31 +17,26 @@ class Board
 
 
   def valid_placement?(ship, coordinates)
-    if valid_length?(ship, coordinates) == true
-      true
-    else
+    if valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
       false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
+      false
+    else #valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
+      #  binding.pry
+      true
     end
-    # if valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
-    #   false
-    # else #valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
-    #   #  binding.pry
-    #   true
-    # end
 
   end
 
@@ -100,34 +95,7 @@ class Board
       return true
     else
       return false
-
-
-
     end
-
-  #  rows_numbers.each_cons(coordinates.length) do |num|
-    row_range = (rows_numbers.min)..(rows_numbers.max)
-    consecutive_array = row_range.to_a
-    if rows_numbers != consecutive_array
-      false
-    else
-      true
-    end
-
-
-    collumn_range = (collumns_letters.min)..(collumns_letters.max)
-    consecutive_collumn_array = collumn_range.to_a
-    if consecutive_collumn_array.length != collumns_letters.length
-      new_consec_collumns = consecutive_collumn_array * collumns_letters.length
-    end
-
-    if new_consec_collumns != collumns_letters
-      false
-    else
-      true
-    end
-
-
   end
 
 
