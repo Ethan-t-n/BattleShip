@@ -84,14 +84,26 @@ class Board
     collumns_letters = []
     coordinates.each do |coordinate|
       parts = coordinate.split("")
-      binding.pry
       collumns_letters << coordinate[0]
     end
     return collumns_letters
   end
 
   def consecutive_coordinates?(ship, coordinates) #check for valid row coordinates, rename this method appropriately
-    
+    collumn_range = collumns(ship, coordinates).min..collumns(ship, coordinates).max
+    row_range = rows(ship, coordinates).min..rows(ship, coordinates).max
+    consecutive_rows = row_range.to_a
+    consecutive_collumns = collumn_range.to_a
+    if collumns(ship, coordinates).uniq.length == 1 && consecutive_rows == rows(ship, coordinates)
+      return true
+    elsif rows(ship, coordinates).uniq.length == 1 && collumns(ship, coordinates) == consecutive_collumns
+      return true
+    else
+      return false
+
+
+
+    end
 
   #  rows_numbers.each_cons(coordinates.length) do |num|
     row_range = (rows_numbers.min)..(rows_numbers.max)
