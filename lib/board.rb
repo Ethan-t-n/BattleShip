@@ -12,36 +12,31 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    @cells.has_key?(coordinate) 
+    @cells.has_key?(coordinate)
   end
 
 
   def valid_placement?(ship, coordinates)
-    if valid_length?(ship, coordinates) == true
-      true
-    else
+    if valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
       false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
+      false
+    elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
+      false
+    else #valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
+      #  binding.pry
+      true
     end
-    # if valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
-    #   false
-    # elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
-    #   false
-    # else #valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
-    #   #  binding.pry
-    #   true
-    # end
 
   end
 
@@ -65,44 +60,51 @@ class Board
     coordinates.map do |coordinate|
       if @cells[coordinate].empty? == true
        false
-      else 
+      else
         true
       end
     end
   end
 
-  def consecutive_coordinates?(ship, coordinates) #check for valid row coordinates, rename this method appropriately
+  def rows(ship, coordinates)
     rows_numbers = []
+    coordinates.each do |coordinate|
+      parts = coordinate.split("")
+      rows_numbers << coordinate[1].to_i
+    end
+    return rows_numbers
+  end
+
+  def collumns(ship, coordinates)
     collumns_letters = []
     coordinates.each do |coordinate|
       parts = coordinate.split("")
-      collumns_letters << coordinate[0].ord
-      rows_numbers << coordinate[1].to_i
+      collumns_letters << coordinate[0]
     end
+    return collumns_letters
+  end
 
-  #  rows_numbers.each_cons(coordinates.length) do |num|
-    row_range = (rows_numbers.min)..(rows_numbers.max)
-    consecutive_array = row_range.to_a
-    if rows_numbers != consecutive_array
-      false
+  def consecutive_coordinates?(ship, coordinates) #check for valid row coordinates, rename this method appropriately
+    collumn_range = collumns(ship, coordinates).min..collumns(ship, coordinates).max
+    row_range = rows(ship, coordinates).min..rows(ship, coordinates).max
+    consecutive_rows = row_range.to_a
+    consecutive_collumns = collumn_range.to_a
+    if collumns(ship, coordinates).uniq.length == 1 && consecutive_rows == rows(ship, coordinates)
+      return true
+    elsif rows(ship, coordinates).uniq.length == 1 && collumns(ship, coordinates) == consecutive_collumns
+      return true
     else
-      true
+      return false
     end
+  end
 
-    
-    collumn_range = (collumns_letters.min)..(collumns_letters.max)
-    consecutive_collumn_array = collumn_range.to_a
-    if consecutive_collumn_array.length != collumns_letters.length
-      new_consec_collumns = consecutive_collumn_array * collumns_letters.length
+  def place(ship, coordinates)
+    if valid_placement?(ship, coordinates) == true
+      coordinates.each do |coordinate|
+        @cells[coordinate].place_ship(ship)
+      end
+
     end
-
-    if new_consec_collumns != collumns_letters
-      false
-    else
-      true
-    end
-
-
   end
 
 
