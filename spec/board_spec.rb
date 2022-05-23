@@ -48,9 +48,9 @@ RSpec.describe Board do
   it 'uses ship present evaluater to return array of true false' do
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
-    
+
     expect(@board.ship_present_evaluater(@cruiser, ["A1", "A2","A3"])).to eq ([false,false,false])
-    
+
     @board.cells["A2"].place_ship(@submarine)
 
     expect(@board.ship_present_evaluater(@submarine, ["A2", "A3", "A4"])).to eq [true,false,false]
@@ -59,7 +59,7 @@ RSpec.describe Board do
   it 'checks if ships are present' do
     @cruiser = Ship.new("Cruiser", 3)
     @submarine = Ship.new("Submarine", 2)
-    
+
     expect(@board.ship_present?(@cruiser, ["A1", "A2"])).to be false
     expect(@board.ship_present?(@submarine, ["A2", "A3", "A4"])).to be false
   end
@@ -73,6 +73,20 @@ RSpec.describe Board do
     expect(@board.cells["A2"].ship).to eq(@submarine)
     expect(@board.ship_present?(@cruiser, ["A1", "A2"])).to be true
     # expect(@board.ship_present?(@submarine, ["A2", "A3", "A4"])).to be true
+  end
+
+  it 'creates rows for array' do
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
+    expect(@board.rows(@cruiser, ["A1", "A2", "A4"])).to eq [1, 2, 4]
+    expect(@board.rows(@submarine, ["A1", "C1"])).to eq [1, 1]
+  end
+
+  it 'creates collumns for array' do
+    @cruiser = Ship.new("Cruiser", 3)
+    @submarine = Ship.new("Submarine", 2)
+    expect(@board.collumns(@cruiser, ["A1", "A2", "A4"])).to eq ["A", "A", "A"]
+    expect(@board.collumns(@submarine, ["A1", "C1"])).to eq ["A", "C"]
   end
 
   xit 'validates consecutive' do

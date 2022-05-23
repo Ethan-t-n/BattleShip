@@ -12,7 +12,7 @@ class Board
   end
 
   def valid_coordinate?(coordinate)
-    @cells.has_key?(coordinate) 
+    @cells.has_key?(coordinate)
   end
 
 
@@ -65,20 +65,33 @@ class Board
     coordinates.map do |coordinate|
       if @cells[coordinate].empty? == true
        false
-      else 
+      else
         true
       end
     end
   end
 
-  def consecutive_coordinates?(ship, coordinates) #check for valid row coordinates, rename this method appropriately
+  def rows(ship, coordinates)
     rows_numbers = []
+    coordinates.each do |coordinate|
+      parts = coordinate.split("")
+      rows_numbers << coordinate[1].to_i
+    end
+    return rows_numbers
+  end
+
+  def collumns(ship, coordinates)
     collumns_letters = []
     coordinates.each do |coordinate|
       parts = coordinate.split("")
-      collumns_letters << coordinate[0].ord
-      rows_numbers << coordinate[1].to_i
+      binding.pry
+      collumns_letters << coordinate[0]
     end
+    return collumns_letters
+  end
+
+  def consecutive_coordinates?(ship, coordinates) #check for valid row coordinates, rename this method appropriately
+    
 
   #  rows_numbers.each_cons(coordinates.length) do |num|
     row_range = (rows_numbers.min)..(rows_numbers.max)
@@ -89,7 +102,7 @@ class Board
       true
     end
 
-    
+
     collumn_range = (collumns_letters.min)..(collumns_letters.max)
     consecutive_collumn_array = collumn_range.to_a
     if consecutive_collumn_array.length != collumns_letters.length
