@@ -40,10 +40,13 @@ class Cell
   def render(revealed = false)
     if fired_upon? == true
       if empty? == true
+        revealed = true
         return "M"
       elsif ship.sunk? == true
+        revealed = true
         return "X"
       else
+        revealed = true
         return "H"
       end
     else

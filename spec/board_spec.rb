@@ -159,6 +159,10 @@ RSpec.describe Board do
     expect(@board.render(true)).to eq(@expected)
   end
 
+  it 'board shows when ships are hit' do
+
+  end
+
 
 
 
