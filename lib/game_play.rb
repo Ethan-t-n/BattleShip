@@ -1,9 +1,10 @@
 require 'pry'
 
 class GamePlay
-    attr_reader :game_board
+    attr_reader :game_board,
     def initialize
-        @game_board = Board.new
+        @computer = Computer.new
+        @player = Player.new
     end
 
     def welcome_message
@@ -21,7 +22,10 @@ class GamePlay
     end
 
     def start
-
+        #until either all the computer/player ships are sunk
+        #end game
+        #return the winner/loser
+        #ask to play again
     end
-    
+
 end

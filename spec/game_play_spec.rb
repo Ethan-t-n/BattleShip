@@ -2,6 +2,7 @@ require './lib/board'
 require './lib/ship'
 require './lib/cell'
 require './lib/game_play'
+require './lib/computer'
 require 'pry'
 
 
