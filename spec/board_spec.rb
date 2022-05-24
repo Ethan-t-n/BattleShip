@@ -134,12 +134,11 @@ RSpec.describe Board do
   it 'can render a board ' do
     @cruiser = Ship.new("Cruiser", 3)
     @board.place(@cruiser, ["A1", "A2", "A3"]) 
-    @expected = "  1 2 3 4 " +
-    "A #{@board.cells["A1"].render} #{@board.cells["A2"].render} #{@board.cells["A3"].render} #{@board.cells["A4"].render} " +
-    "B #{@board.cells["B1"].render} #{@board.cells["B2"].render} #{@board.cells["B3"].render} #{@board.cells["B4"].render} " +
-    "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} " +
-    "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} " 
-
+    @expected = "  1 2 3 4 \n" +
+    "A #{@board.cells["A1"].render} #{@board.cells["A2"].render} #{@board.cells["A3"].render} #{@board.cells["A4"].render} \n" +
+    "B #{@board.cells["B1"].render} #{@board.cells["B2"].render} #{@board.cells["B3"].render} #{@board.cells["B4"].render} \n" +
+    "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
+    "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
 
     expect(@board.render).to be_a String
     expect(@board.render).to eq(@expected)
@@ -148,11 +147,11 @@ RSpec.describe Board do
   it 'can render a board if revealed == true' do
     @cruiser = Ship.new("Cruiser", 3)
     @board.place(@cruiser, ["A1", "A2", "A3"]) 
-    @expected = "  1 2 3 4 " +
-    "A #{@board.cells["A1"].render(true)} #{@board.cells["A2"].render(true)} #{@board.cells["A3"].render(true)} #{@board.cells["A4"].render(true)} " +
-    "B #{@board.cells["B1"].render(true)} #{@board.cells["B2"].render(true)} #{@board.cells["B3"].render(true)} #{@board.cells["B4"].render(true)} " +
-    "C #{@board.cells["C1"].render(true)} #{@board.cells["C2"].render(true)} #{@board.cells["C3"].render(true)} #{@board.cells["C4"].render(true)} " +
-    "D #{@board.cells["D1"].render(true)} #{@board.cells["D2"].render(true)} #{@board.cells["D3"].render(true)} #{@board.cells["D4"].render(true)} " 
+    @expected = "  1 2 3 4 \n" +
+    "A #{@board.cells["A1"].render(true)} #{@board.cells["A2"].render(true)} #{@board.cells["A3"].render(true)} #{@board.cells["A4"].render(true)} \n" +
+    "B #{@board.cells["B1"].render(true)} #{@board.cells["B2"].render(true)} #{@board.cells["B3"].render(true)} #{@board.cells["B4"].render(true)} \n" +
+    "C #{@board.cells["C1"].render(true)} #{@board.cells["C2"].render(true)} #{@board.cells["C3"].render(true)} #{@board.cells["C4"].render(true)} \n" +
+    "D #{@board.cells["D1"].render(true)} #{@board.cells["D2"].render(true)} #{@board.cells["D3"].render(true)} #{@board.cells["D4"].render(true)} \n" 
 
 
     expect(@board.render(true)).to be_a String
@@ -160,7 +159,81 @@ RSpec.describe Board do
   end
 
   it 'board shows when ships are hit' do
+    @cruiser = Ship.new("Cruiser", 3)
 
+    @board.place(@cruiser, ["A1", "A2", "A3"]) 
+
+    @board.cells["A1"].fire_upon
+
+    @expected = "  1 2 3 4 \n" +
+    "A #{@board.cells["A1"].render} #{@board.cells["A2"].render} #{@board.cells["A3"].render} #{@board.cells["A4"].render} \n" +
+    "B #{@board.cells["B1"].render} #{@board.cells["B2"].render} #{@board.cells["B3"].render} #{@board.cells["B4"].render} \n" +
+    "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
+    "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
+
+    puts @board.render
+
+    expect(@board.render).to be_a String
+    expect(@board.render).to eq(@expected)
+  end
+
+  it 'board shows when shots fired are a miss' do
+    @cruiser = Ship.new("Cruiser", 3)
+
+    @board.place(@cruiser, ["A1", "A2", "A3"]) 
+
+    @board.cells["D1"].fire_upon
+
+    @expected = "  1 2 3 4 \n" +
+    "A #{@board.cells["A1"].render} #{@board.cells["A2"].render} #{@board.cells["A3"].render} #{@board.cells["A4"].render} \n" +
+    "B #{@board.cells["B1"].render} #{@board.cells["B2"].render} #{@board.cells["B3"].render} #{@board.cells["B4"].render} \n" +
+    "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
+    "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
+
+    puts @board.render
+
+    expect(@board.render).to be_a String
+    expect(@board.render).to eq(@expected)
+  end
+
+  it 'board shows when shots fired sink the ship' do
+    @cruiser = Ship.new("Cruiser", 3)
+
+    @board.place(@cruiser, ["A1", "A2", "A3"]) 
+
+    @board.cells["A1"].fire_upon
+    @board.cells["A2"].fire_upon
+    @board.cells["A3"].fire_upon
+
+    @expected = "  1 2 3 4 \n" +
+    "A #{@board.cells["A1"].render} #{@board.cells["A2"].render} #{@board.cells["A3"].render} #{@board.cells["A4"].render} \n" +
+    "B #{@board.cells["B1"].render} #{@board.cells["B2"].render} #{@board.cells["B3"].render} #{@board.cells["B4"].render} \n" +
+    "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
+    "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
+
+    puts @board.render
+
+    expect(@board.render).to be_a String
+    expect(@board.render).to eq(@expected)
+  end
+
+  it 'board shows when ship placement' do
+    @cruiser = Ship.new("Cruiser", 3)
+
+    @board.place(@cruiser, ["A1", "A2", "A3"]) 
+
+    @board.cells["A1"].fire_upon
+
+    @expected = "  1 2 3 4 \n" +
+    "A #{@board.cells["A1"].render(true)} #{@board.cells["A2"].render(true)} #{@board.cells["A3"].render(true)} #{@board.cells["A4"].render(true)} \n" +
+    "B #{@board.cells["B1"].render(true)} #{@board.cells["B2"].render(true)} #{@board.cells["B3"].render(true)} #{@board.cells["B4"].render(true)} \n" +
+    "C #{@board.cells["C1"].render(true)} #{@board.cells["C2"].render(true)} #{@board.cells["C3"].render(true)} #{@board.cells["C4"].render(true)} \n" +
+    "D #{@board.cells["D1"].render(true)} #{@board.cells["D2"].render(true)} #{@board.cells["D3"].render(true)} #{@board.cells["D4"].render(true)} \n" 
+
+    puts @board.render(true)
+
+    expect(@board.render(true)).to be_a String
+    expect(@board.render(true)).to eq(@expected)
   end
 
 
