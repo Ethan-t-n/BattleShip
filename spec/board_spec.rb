@@ -124,11 +124,39 @@ RSpec.describe Board do
   end
 
   it 'does not overlap' do
-    @cruiser_1 = Ship.new("Cruiser", 3)
-    expect(@board.valid_placement?(@cruiser_1, ["A1", "A2", "A3"])).to be true
-    @board.place(@cruiser_1, ["A1", "A2", "A3"])
+    @cruiser = Ship.new("Cruiser", 3)
+    expect(@board.valid_placement?(@cruiser, ["A1", "A2", "A3"])).to be true
+    @board.place(@cruiser, ["A1", "A2", "A3"])
     @submarine = Ship.new("Submarine", 2)
     expect(@board.valid_placement?(@submarine, ["A1", "B1"])).to be false
+  end
+
+  it 'can render a board ' do
+    @cruiser = Ship.new("Cruiser", 3)
+    @board.place(@cruiser, ["A1", "A2", "A3"]) 
+    @expected = "  1 2 3 4 " +
+    "A #{@board.cells["A1"].render} #{@board.cells["A2"].render} #{@board.cells["A3"].render} #{@board.cells["A4"].render} " +
+    "B #{@board.cells["B1"].render} #{@board.cells["B2"].render} #{@board.cells["B3"].render} #{@board.cells["B4"].render} " +
+    "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} " +
+    "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} " 
+
+
+    expect(@board.render).to be_a String
+    expect(@board.render).to eq(@expected)
+  end
+
+  it 'can render a board if revealed == true' do
+    @cruiser = Ship.new("Cruiser", 3)
+    @board.place(@cruiser, ["A1", "A2", "A3"]) 
+    @expected = "  1 2 3 4 " +
+    "A #{@board.cells["A1"].render(true)} #{@board.cells["A2"].render(true)} #{@board.cells["A3"].render(true)} #{@board.cells["A4"].render(true)} " +
+    "B #{@board.cells["B1"].render(true)} #{@board.cells["B2"].render(true)} #{@board.cells["B3"].render(true)} #{@board.cells["B4"].render(true)} " +
+    "C #{@board.cells["C1"].render(true)} #{@board.cells["C2"].render(true)} #{@board.cells["C3"].render(true)} #{@board.cells["C4"].render(true)} " +
+    "D #{@board.cells["D1"].render(true)} #{@board.cells["D2"].render(true)} #{@board.cells["D3"].render(true)} #{@board.cells["D4"].render(true)} " 
+
+
+    expect(@board.render(true)).to be_a String
+    expect(@board.render(true)).to eq(@expected)
   end
 
 
