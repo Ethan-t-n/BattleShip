@@ -19,7 +19,6 @@ class Cell
 
   end
 
-  #check this later
   def place_ship(ship)
     @ship = ship
   end
@@ -40,10 +39,13 @@ class Cell
   def render(revealed = false)
     if fired_upon? == true
       if empty? == true
+        revealed = true
         return "M"
       elsif ship.sunk? == true
+        revealed = true
         return "X"
       else
+        revealed = true
         return "H"
       end
     else
