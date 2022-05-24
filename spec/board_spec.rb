@@ -171,7 +171,7 @@ RSpec.describe Board do
     "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
     "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
 
-    puts @board.render
+    # puts @board.render
 
     expect(@board.render).to be_a String
     expect(@board.render).to eq(@expected)
@@ -190,7 +190,7 @@ RSpec.describe Board do
     "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
     "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
 
-    puts @board.render
+    # puts @board.render
 
     expect(@board.render).to be_a String
     expect(@board.render).to eq(@expected)
@@ -211,7 +211,7 @@ RSpec.describe Board do
     "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
     "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
 
-    puts @board.render
+    # puts @board.render
 
     expect(@board.render).to be_a String
     expect(@board.render).to eq(@expected)
@@ -230,7 +230,7 @@ RSpec.describe Board do
     "C #{@board.cells["C1"].render(true)} #{@board.cells["C2"].render(true)} #{@board.cells["C3"].render(true)} #{@board.cells["C4"].render(true)} \n" +
     "D #{@board.cells["D1"].render(true)} #{@board.cells["D2"].render(true)} #{@board.cells["D3"].render(true)} #{@board.cells["D4"].render(true)} \n" 
 
-    puts @board.render(true)
+    # puts @board.render(true)
 
     expect(@board.render(true)).to be_a String
     expect(@board.render(true)).to eq(@expected)
