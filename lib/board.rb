@@ -44,8 +44,6 @@ class Board
     if coordinates.count == ship.length
       true
     else
-      binding.pry
-
       false
     end
   end
