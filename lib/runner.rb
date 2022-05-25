@@ -5,5 +5,7 @@ require './lib/game_play'
 require 'pry'
 
 game_play = GamePlay.new
+player = Player.new
 
-game_play.welcome_message
+## this method doesn't work yet the code isn't finished
+game_play.play

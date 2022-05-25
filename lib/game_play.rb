@@ -1,5 +1,3 @@
-require 'pry'
-
 class GamePlay
     attr_reader :computer, :player
     def initialize
@@ -21,11 +19,25 @@ class GamePlay
         end
     end
 
-    def start
-        #until either all the computer/player ships are sunk
-        #end game
-        #return the winner/loser
-        #ask to play again
+    def place_ship
+        #call on player method to place ships
+        #call on computer method to place random ships
+    end
+
+    def end_game
+        # evaluate requirements for end of the game
+        # When all either the computer ships are sunk or
+        # player ships are sunk. It will print out who won and lost
+        # and ask if the player wants to play again.
+    end
+
+    def play
+        #call on place_ship
+        #
+        #until either all either the computer or player ships are sunk
+        #go back and forthe between player and computer turns
+        #
+        #call on end_game
     end
 
 end

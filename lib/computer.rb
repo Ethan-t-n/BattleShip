@@ -1,5 +1,3 @@
-require 'pry'
-
 class Computer
     attr_reader :game_board, :ships
     def initialize
@@ -10,7 +8,7 @@ class Computer
     end
 
     def add_ship(ship)
-        
+        #possibly use this method to add ships that the user created
     end
 
     def random_cell
@@ -28,22 +26,20 @@ class Computer
     end
 
     def valid_coor(ship)
-        valid = []
         coords = coordinates(ship)
-            if @game_board.valid_placement?(ship, coords) == true
-                valid = coords
-            else
-                valid_coor(ship)
-            end
-        valid
+        valid_coords =[]
+
+        if @game_board.valid_placement?(ship, coords) != true
+            valid_coor(ship)
+        else
+            return valid_coords = coords
+        end
     end
     
     
-    def place #place pieces on the board, need to rename
-        #Iterate through ships
+    def place
         @ships.each do |ship|
             @game_board.place(ship, valid_coor(ship))
         end
-        binding.pry
-    end
+   end
 end

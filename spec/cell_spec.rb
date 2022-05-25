@@ -92,14 +92,4 @@ RSpec.describe Cell do
     @cruiser.hit
     expect(@cell.render).to eq("X")
   end
-
-
-
-
-
-
-
-
-
-
 end

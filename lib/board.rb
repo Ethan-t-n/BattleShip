@@ -1,5 +1,3 @@
-require 'pry'
-
 class Board
   attr_reader :cells
   def initialize
@@ -17,12 +15,6 @@ class Board
 
 
   def valid_placement?(ship, coordinates)
-    # unless valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
-    #   false
-    # else
-    #   true
-    # end
-
     if valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
       false
     elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
@@ -128,11 +120,4 @@ class Board
       "D #{cells["D1"].render(true)} #{cells["D2"].render(true)} #{cells["D3"].render(true)} #{cells["D4"].render(true)} \n" 
     end
   end
-
- 
-
-
-
-
-
 end

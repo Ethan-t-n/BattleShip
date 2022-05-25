@@ -20,4 +20,8 @@ RSpec.describe Player do
         expect(@player.ships).to be_a Array
     end
 
+    it ' takes user input' do
+        # @player.user_input
+    end
+
 end
