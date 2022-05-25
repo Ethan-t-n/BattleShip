@@ -34,7 +34,4 @@ RSpec.describe Computer do
     @computer.place
   end
 
-  
-
-
 end

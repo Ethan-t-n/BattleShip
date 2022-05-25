@@ -13,4 +13,31 @@ This program should run by running the following code from the commandline:
 The classes included in this program are as follows:
 
 - Cell
-- 
+- Ship
+- Board
+- Player
+- Runner 
+- Computer
+- game_play 
+
+# Cell 
+The cell class essentially creates the "hidden" spaces. It also creates methods for placing a ship, asking if the ship has been fired upon, and asking if they space is empty
+
+# Ship 
+The ship class creates the ship piece, the health of the ship, and the length of the ship. 
+
+# Board 
+The board initalizes all the cells and places them onto the board, that way we can give the cells coordinates to place or fire the ships. 
+
+# Player 
+This file allows the player to get the board and place the ship before we start the game
+
+# Runner
+This file calls start which should call on our welcome message. After the welcome message, it should call our play and end game method.
+
+# Computer 
+The computer class has the computer look through all the cells on the board in order to find a valid place to put down its' ship
+
+# game_play 
+This file should implement all the other files in order to run/start the game. 
+

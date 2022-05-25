@@ -72,7 +72,7 @@ RSpec.describe Board do
 
     expect(@board.cells["A2"].ship).to eq(@submarine)
     expect(@board.ship_present?(@cruiser, ["A1", "A2"])).to be true
-    # expect(@board.ship_present?(@submarine, ["A2", "A3", "A4"])).to be true
+    expect(@board.ship_present?(@submarine, ["A2", "A3", "A4"])).to be true
   end
 
   it 'creates rows for array' do
@@ -171,6 +171,7 @@ RSpec.describe Board do
     "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
     "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
 
+    # use code below to verify
     # puts @board.render
 
     expect(@board.render).to be_a String
@@ -189,7 +190,7 @@ RSpec.describe Board do
     "B #{@board.cells["B1"].render} #{@board.cells["B2"].render} #{@board.cells["B3"].render} #{@board.cells["B4"].render} \n" +
     "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
     "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
-
+    # use code below to verify
     # puts @board.render
 
     expect(@board.render).to be_a String
@@ -211,6 +212,7 @@ RSpec.describe Board do
     "C #{@board.cells["C1"].render} #{@board.cells["C2"].render} #{@board.cells["C3"].render} #{@board.cells["C4"].render} \n" +
     "D #{@board.cells["D1"].render} #{@board.cells["D2"].render} #{@board.cells["D3"].render} #{@board.cells["D4"].render} \n" 
 
+    # use code below to verify
     # puts @board.render
 
     expect(@board.render).to be_a String
@@ -230,6 +232,7 @@ RSpec.describe Board do
     "C #{@board.cells["C1"].render(true)} #{@board.cells["C2"].render(true)} #{@board.cells["C3"].render(true)} #{@board.cells["C4"].render(true)} \n" +
     "D #{@board.cells["D1"].render(true)} #{@board.cells["D2"].render(true)} #{@board.cells["D3"].render(true)} #{@board.cells["D4"].render(true)} \n" 
 
+    # use code below to verify
     # puts @board.render(true)
 
     expect(@board.render(true)).to be_a String

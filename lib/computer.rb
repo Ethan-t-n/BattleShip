@@ -1,5 +1,3 @@
-require 'pry'
-
 class Computer
     attr_reader :game_board, :ships
     def initialize
@@ -10,7 +8,7 @@ class Computer
     end
 
     def add_ship(ship)
-        
+        #possibly use this method to add ships that the user created
     end
 
     def random_cell
@@ -33,7 +31,7 @@ class Computer
 
         if @game_board.valid_placement?(ship, coords) != true
             valid_coor(ship)
-        else #@game_board.valid_placement?(ship, valid) == true
+        else
             return valid_coords = coords
         end
     end
