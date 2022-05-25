@@ -10,6 +10,6 @@ class Player
     def user_input
     # input = gets.chomp
     # if input == 
-    end
+    end 
 
 end
