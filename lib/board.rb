@@ -17,6 +17,12 @@ class Board
 
 
   def valid_placement?(ship, coordinates)
+    # unless valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
+    #   false
+    # else
+    #   true
+    # end
+
     if valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
       false
     elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == false
@@ -34,7 +40,6 @@ class Board
     elsif valid_length?(ship, coordinates) == false && ship_present?(ship, coordinates) == true && consecutive_coordinates?(ship, coordinates) == true
       false
     else #valid_length?(ship, coordinates) == true && ship_present?(ship, coordinates) == false && consecutive_coordinates?(ship, coordinates) == true
-      #  binding.pry
       true
     end
 
@@ -78,8 +83,8 @@ class Board
   def collumns(ship, coordinates)
     collumns_letters = []
     coordinates.each do |coordinate|
-      parts = coordinate.split("")
-      collumns_letters << coordinate[0]
+      parts = coordinate.chr
+      collumns_letters << parts
     end
     return collumns_letters
   end

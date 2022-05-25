@@ -16,6 +16,7 @@ RSpec.describe Computer do
       expect(@computer).to be_a Computer
       expect(@computer.game_board).to be_a Board
       expect(@computer.ships).to be_a Array
+      expect(@computer.ships).to eq[Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
 
   end
 
@@ -23,10 +24,16 @@ RSpec.describe Computer do
     expect(@computer.random_cell).to be_a String
   end
 
-  it 'once given a ship it can find random valid coordinates' do
-    #Use a binding.pry to verify this assumption
-    @computer.take_turn(@cruiser)
+  it 'returns valid coordinates' do
+    expect(@computer.valid_coor(@cruiser).length).to eq 3
   end
+
+  xit 'once given a ship it can find random valid coordinates' do
+    #Use a binding.pry to verify this assumption
+    @computer.place
+  end
+
+  
 
 
 end
