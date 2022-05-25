@@ -13,7 +13,7 @@ RSpec.describe GamePlay do
 
   it 'exists and has attributes' do
       expect(@game_play).to be_a GamePlay
-      expect(@game_play.game_board).to be_a Board
+      expect(@game_play.computer).to be_a Computer
   end
 
 end

@@ -1,38 +1,36 @@
 require 'pry'
 
 class Computer
-    attr_reader :game_board
+    attr_reader :game_board, :ships
     def initialize
         @game_board = Board.new
+        @ships = []
+    end
+
+    def add_ship(ship)
+
     end
 
     def random_cell
         random_collumn = [1, 2, 3, 4]
         random_row = ["A", "B", "C", "D"]
+        "#{random_row.sample}#{random_collumn.sample}"
+    end
 
-        binding.pry
-        cell_1 = game_board.cells["#{random_row.sample}#{random_collumn.sample}"]
+    def coordinates(ship)
+        coordinate_array = []
+        until coordinate_array.length == ship.length
+            coordinate_array << random_cell
+        end
+       coordinate_array
     end
 
     def take_turn(ship)
-
-
-
-        #place the ship in the valid_coordinate?
-        #random_cell
-        #valid_coordinate
-        #valid_placement?
-        #valid_length
-
-        #until valid_length == ship.length
-
-
-        # if random_cell == valid_placement? (ship, random_cell)
-        #place a whole ship randomly
-        #use valid_placement? method
-        #use valid_coordinate? method
-        #
+        coordinates = coordinates(ship)
+        if @game_board.valid_placement?(ship, coordinates) == false
+            take_turn(ship)
+        else
+            @game_board.place(ship, coordinates)
+        end
     end
-
-
 end
