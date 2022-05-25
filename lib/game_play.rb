@@ -4,7 +4,7 @@ class GamePlay
     attr_reader :computer, :player
     def initialize
         @computer = Computer.new
-        # @player = Player.new
+        @player = Player.new
     end
 
     def welcome_message
